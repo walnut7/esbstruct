@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- #%L Wildfly Camel %% Copyright (C) 2013 - 2015 RedHat %% Licensed under 
+	the Apache License, Version 2.0 (the "License"); you may not use this file 
+	except in compliance with the License. You may obtain a copy of the License 
+	at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable 
+	law or agreed to in writing, software distributed under the License is distributed 
+	on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
+	express or implied. See the License for the specific language governing permissions 
+	and limitations under the License. #L% -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:camel="http://camel.apache.org/schema/spring"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans      http://www.springframework.org/schema/beans/spring-beans.xsd                                                                                            http://camel.apache.org/schema/spring                                               http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <bean class="com.kpleasing.esb.leasing.process.SendSMSProcess" id="leasing001"/>
+    <bean class="com.kpleasing.esb.leasing.process.SyncUserInfoProcess" id="leasing002"/>
+    <bean
+        class="com.kpleasing.esb.leasing.process.SyncPartnerInfoProcess" id="leasing003"/>
+    <bean class="com.kpleasing.esb.leasing.process.AutoTrialProcess" id="leasing004"/>
+    <bean
+        class="com.kpleasing.esb.leasing.process.QueryAutoTrialResultProcess" id="leasing005"/>
+    <bean
+        class="com.kpleasing.esb.leasing.process.QueryOrderInfoProcess" id="leasing006"/>
+    <bean
+        class="com.kpleasing.esb.leasing.process.GenerateBusinessOrderProcess" id="leasing007"/>
+    <bean
+        class="com.kpleasing.esb.leasing.process.CancelBusinessOrderProcess" id="leasing008"/>
+    <bean
+        class="com.kpleasing.esb.leasing.process.QueryOrderByCustIdProcess" id="leasing009"/>
+    <bean
+        class="com.kpleasing.esb.leasing.process.QueryOrderByApplyNoProcess" id="leasing010"/>
+    <bean
+        class="com.kpleasing.esb.leasing.process.QueryEarlyRepaymentAmountProcess" id="leasing011"/>
+    <bean
+        class="com.kpleasing.esb.leasing.process.QueryOverdueOrderProcess" id="leasing012"/>
+    <bean
+        class="com.kpleasing.esb.leasing.process.QueryRepayOrderProcess" id="leasing013"/>
+    <bean
+        class="com.kpleasing.esb.leasing.process.QueryBuyoutAmountProcess" id="leasing014"/>
+    <bean
+        class="com.kpleasing.esb.leasing.process.GeneratePstRentTodoProcess" id="leasing015"/>
+    <bean
+        class="com.kpleasing.esb.leasing.process.PayAuthenticationProcess" id="leasing016"/>
+    <bean
+        class="com.kpleasing.esb.leasing.process.PayBindAccountProcess" id="leasing017"/>
+    <camelContext id="leasingContext" xmlns="http://camel.apache.org/schema/spring">
+        <route id="leasing_route_1">
+            <from id="leasing_from_1" uri="direct-vm:LEASING001"/>
+            <to id="leasing_bean_1" uri="bean:leasing001"/>
+        </route>
+        <route id="leasing_route_2">
+            <from id="leasing_from_2" uri="direct-vm:LEASING002"/>
+            <to id="leasing_bean_2" uri="bean:leasing002"/>
+        </route>
+        <route id="leasing_route_3">
+            <from id="leasing_from_3" uri="direct-vm:LEASING003"/>
+            <to id="leasing_bean_3" uri="bean:leasing003"/>
+        </route>
+        <route id="leasing_route_4">
+            <from id="leasing_from_4" uri="direct-vm:LEASING004"/>
+            <to id="leasing_bean_4" uri="bean:leasing004"/>
+        </route>
+        <route id="leasing_route_5">
+            <from id="leasing_from_5" uri="direct-vm:LEASING005"/>
+            <to id="leasing_bean_5" uri="bean:leasing005"/>
+        </route>
+        <route id="leasing_route_6">
+            <from id="leasing_from_6" uri="direct-vm:LEASING006"/>
+            <to id="leasing_bean_6" uri="bean:leasing006"/>
+        </route>
+        <route id="leasing_route_7">
+            <from id="leasing_from_7" uri="direct-vm:LEASING007"/>
+            <to id="leasing_bean_7" uri="bean:leasing007"/>
+        </route>
+        <route id="leasing_route_8">
+            <from id="leasing_from_8" uri="direct-vm:LEASING008"/>
+            <to id="leasing_bean_8" uri="bean:leasing008"/>
+        </route>
+        <route id="leasing_route_9">
+            <from id="leasing_from_9" uri="direct-vm:LEASING009"/>
+            <to id="leasing_bean_9" uri="bean:leasing009"/>
+        </route>
+        <route id="leasing_route_10">
+            <from id="leasing_from_10" uri="direct-vm:LEASING010"/>
+            <to id="leasing_bean_10" uri="bean:leasing010"/>
+        </route>
+        <route id="leasing_route_11">
+            <from id="leasing_from_11" uri="direct-vm:LEASING011"/>
+            <to id="leasing_bean_11" uri="bean:leasing011"/>
+        </route>
+        <route id="leasing_route_12">
+            <from id="leasing_from_12" uri="direct-vm:LEASING012"/>
+            <to id="leasing_bean_12" uri="bean:leasing012"/>
+        </route>
+        <route id="leasing_route_13">
+            <from id="leasing_from_13" uri="direct-vm:LEASING013"/>
+            <to id="leasing_bean_13" uri="bean:leasing013"/>
+        </route>
+        <route id="leasing_route_14">
+            <from id="leasing_from_14" uri="direct-vm:LEASING014"/>
+            <to id="leasing_bean_14" uri="bean:leasing014"/>
+        </route>
+        <route id="leasing_route_15">
+            <from id="leasing_from_15" uri="direct-vm:LEASING015"/>
+            <to id="leasing_bean_15" uri="bean:leasing015"/>
+        </route>
+        <route id="leasing_route_16">
+            <from id="leasing_from_16" uri="direct-vm:LEASING016"/>
+            <to id="leasing_bean_16" uri="bean:leasing016"/>
+        </route>
+        <route id="leasing_route_17">
+            <from id="leasing_from_17" uri="direct-vm:LEASING017"/>
+            <to id="leasing_bean_17" uri="bean:leasing017"/>
+        </route>
+    </camelContext>
+</beans>

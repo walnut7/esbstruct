@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  Wildfly Camel
+  %%
+  Copyright (C) 2013 - 2015 RedHat
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:camel="http://camel.apache.org/schema/spring"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans                                     http://www.springframework.org/schema/beans/spring-beans.xsd     http://camel.apache.org/schema/spring     http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <bean class="com.kpleasing.esb.crm.process.RegisterProcess" id="crm001"/>
+    <bean class="com.kpleasing.esb.crm.process.GetUserProfileProcess" id="crm002"/>
+    <bean class="com.kpleasing.esb.crm.process.SetUserProfileProcess" id="crm003"/>
+    <bean class="com.kpleasing.esb.crm.process.GetUserInfoProcess" id="crm004"/>
+    <bean class="com.kpleasing.esb.crm.process.StaffLoginProcess" id="crm005"/>
+    <bean class="com.kpleasing.esb.crm.process.StaffModifyPwdProcess" id="crm006"/>
+    <bean class="com.kpleasing.esb.crm.process.SetUserInfoProcess" id="crm007"/>
+    <bean
+        class="com.kpleasing.esb.crm.process.SyncReserverCustomerProcess" id="crm008"/>
+    <bean class="com.kpleasing.esb.crm.process.SyncTMCustomerProcess" id="crm009"/>
+    <bean class="com.kpleasing.esb.crm.process.SyncFaceVedioTimeProcess" id="crm010"/>
+    <bean class="com.kpleasing.esb.crm.process.GetBankAccountInfoProcess" id="crm011"/>
+    <bean class="com.kpleasing.esb.crm.process.SetPayAccountBindProcess" id="crm012"/>
+    <camelContext id="crmContext" xmlns="http://camel.apache.org/schema/spring">
+        <route id="crm_route_1">
+            <from id="crm_from_1" uri="direct-vm:CRM001"/>
+            <to id="crm_bean_1" uri="bean:crm001"/>
+        </route>
+        <route id="crm_route_2">
+            <from id="crm_from_2" uri="direct-vm:CRM002"/>
+            <to id="crm_bean_2" uri="bean:crm002"/>
+        </route>
+        <route id="crm_route_3">
+            <from id="crm_from_3" uri="direct-vm:CRM003"/>
+            <to id="crm_bean_3" uri="bean:crm003"/>
+        </route>
+        <route id="crm_route_4">
+            <from id="crm_from_4" uri="direct-vm:CRM004"/>
+            <to id="crm_bean_4" uri="bean:crm004"/>
+        </route>
+        <route id="crm_route_5">
+            <from id="crm_from_5" uri="direct-vm:CRM005"/>
+            <to id="crm_bean_5" uri="bean:crm005"/>
+        </route>
+        <route id="crm_route_6">
+            <from id="crm_from_6" uri="direct-vm:CRM006"/>
+            <to id="crm_bean_6" uri="bean:crm006"/>
+        </route>
+        <route id="crm_route_7">
+            <from id="crm_from_7" uri="direct-vm:CRM007"/>
+            <to id="crm_bean_7" uri="bean:crm007"/>
+        </route>
+        <route id="crm_route_8">
+            <from id="crm_from_8" uri="direct-vm:CRM008"/>
+            <to id="crm_bean_8" uri="bean:crm008"/>
+        </route>
+        <route id="crm_route_9">
+            <from id="crm_from_9" uri="direct-vm:CRM009"/>
+            <to id="crm_bean_9" uri="bean:crm009"/>
+        </route>
+        <route id="crm_route_10">
+            <from id="crm_from_10" uri="direct-vm:CRM010"/>
+            <to id="crm_bean_10" uri="bean:crm010"/>
+        </route>
+        <route id="crm_route_11">
+            <from id="crm_from_11" uri="direct-vm:CRM011"/>
+            <to id="crm_bean_11" uri="bean:crm011"/>
+        </route>
+        <route id="crm_route_12">
+            <from id="crm_from_12" uri="direct-vm:CRM012"/>
+            <to id="crm_bean_12" uri="bean:crm012"/>
+        </route>
+    </camelContext>
+</beans>

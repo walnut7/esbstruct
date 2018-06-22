@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  Wildfly Camel
+  %%
+  Copyright (C) 2013 - 2015 RedHat
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:camel="http://camel.apache.org/schema/spring"
+    xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans      http://www.springframework.org/schema/beans/spring-beans.xsd      http://www.springframework.org/schema/jdbc                                           http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd           http://camel.apache.org/schema/spring      http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <bean class="org.springframework.jndi.JndiObjectFactoryBean" id="dataSource">
+        <property name="jndiName" value="java:jboss/datasources/ESBDS"/>
+    </bean>
+    <bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- spring transaction manager -->
+    <bean
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="txManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean class="com.kpleasing.esb.route.RouteProcessService" id="RouteProcess"/>
+    <bean class="com.kpleasing.esb.route.ErrorProcessService" id="ErrorProcess"/>
+    <bean class="com.kpleasing.esb.route.TimerProcessService" id="MyTimerProcess"/>
+    <camelContext id="RouteContext" xmlns="http://camel.apache.org/schema/spring">
+        <route id="RouteApiStart">
+            <from id="RouteFrom" uri="servlet://api"/>
+            <to id="RouteBean" uri="bean:RouteProcess"/>
+            <recipientList id="RouteRecipientList">
+                <simple>direct-vm:${header.RouteName}</simple>
+            </recipientList>
+        </route>
+        <route id="RouteDefaultRrror">
+            <from id="RouteFromError" uri="direct-vm:ERROR"/>
+            <to id="RouteBeanError" uri="bean:ErrorProcess"/>
+        </route>
+        <route id="RouteReportTimer">
+            <from id="RouteFromEWCTimer" uri="quartz2://ewechat/pushTimer?cron=0+10+18+*+*+?+*"/>
+            <to id="RouteToEWCTimer" uri="bean:MyTimerProcess"/>
+        </route>
+    </camelContext>
+    <bean class="com.kpleasing.esb.spring.context.SpringContextHolder" id="springContextHolder"/>
+</beans>
