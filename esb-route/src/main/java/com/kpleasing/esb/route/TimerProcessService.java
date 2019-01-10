@@ -17,7 +17,7 @@ public class TimerProcessService implements Processor {
 		logger.info("开始推送数据......");
 		try {
 			Configure config = ConfigUtil.getInstance().getConfig();
-			HttpHelper.doHttpPost(config.EWECHAT_URL+"/push", "");
+			// HttpHelper.doHttpPost(config.EWECHAT_URL+"/push", "");
 		} catch(Exception e) {
 			
 		}

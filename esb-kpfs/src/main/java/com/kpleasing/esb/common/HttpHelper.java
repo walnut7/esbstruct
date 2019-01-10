@@ -32,9 +32,9 @@ public class HttpHelper {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(HttpHelper.class);
 
-    private static final int CONNECT_TIMEOUT = 30000;
+    private static final int CONNECT_TIMEOUT = 180000;
 	
-	private static final int SOCKET_TIMEOUT = 30000;
+	private static final int SOCKET_TIMEOUT = 180000;
 	
 	private static final String HTTP_URI_CHARSET = "UTF-8";
 	

@@ -188,6 +188,7 @@ public class SyncFinanceSchemeProcess implements Processor {
 		fsReq.setBuyout_amount(wxss003Req.getBuyout_amount());
 		fsReq.setValid_date_from(wxss003Req.getValid_date_from());
 		fsReq.setValid_date_to(wxss003Req.getValid_date_to());
+		fsReq.setPlan_synopsis(wxss003Req.getPlan_synopsis());
 
 		logger.info("SignKey:" + param.getSignKey());
 		fsReq.setSign(Security.getSign(fsReq, param.getSignKey()));

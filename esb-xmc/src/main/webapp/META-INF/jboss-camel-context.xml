@@ -21,10 +21,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
     <bean class="com.kpleasing.esb.xmc.process.FirstAuditProcess" id="xmc001"/>
+    <bean class="com.kpleasing.esb.xmc.process.GetWXAccessTokenProcess" id="xmc002"/>
     <camelContext id="xmcContext" xmlns="http://camel.apache.org/schema/spring">
         <route id="xmc_route_1">
             <from id="xmc_from_1" uri="direct-vm:XMC001"/>
             <to id="xmc_bean_1" uri="bean:xmc001"/>
+        </route>
+        <route id="xmc_route_2">
+            <from id="xmc_from_2" uri="direct-vm:XMC002"/>
+            <to id="xmc_bean_2" uri="bean:xmc002"/>
         </route>
     </camelContext>
 </beans>

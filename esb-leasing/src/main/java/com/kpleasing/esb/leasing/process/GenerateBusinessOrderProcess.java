@@ -65,10 +65,11 @@ public class GenerateBusinessOrderProcess implements Processor {
 			leasResp.setApplyno((String)map.get("applyno"));
 			if(map.get("status")!=null && "Y".equals((String)map.get("status"))) {
 				leasResp.setResult_code("SUCCESS");
+				leasResp.setResult_desc((String)map.get("message"));
 			} else {
 				leasResp.setResult_code("FAILED");
+				leasResp.setResult_desc("订单创建失败");
 			}
-			leasResp.setResult_desc((String)map.get("message"));
 			
 			List<ClientSecurityKey> clientParams = paramConfig.getClientSecurityKey();
 			String key = null;

@@ -41,6 +41,12 @@
         class="com.kpleasing.esb.leasing.process.PayAuthenticationProcess" id="leasing016"/>
     <bean
         class="com.kpleasing.esb.leasing.process.PayBindAccountProcess" id="leasing017"/>
+    <bean
+        class="com.kpleasing.esb.leasing.process.SendTDIdentityAuthProcess" id="leasing018"/>
+    <bean
+        class="com.kpleasing.esb.leasing.process.QueryPFStCardNumProcess" id="leasing019"/>
+    <bean
+        class="com.kpleasing.esb.leasing.process.SavePFStCardNumProcess" id="leasing020"/>
     <camelContext id="leasingContext" xmlns="http://camel.apache.org/schema/spring">
         <route id="leasing_route_1">
             <from id="leasing_from_1" uri="direct-vm:LEASING001"/>
@@ -109,6 +115,18 @@
         <route id="leasing_route_17">
             <from id="leasing_from_17" uri="direct-vm:LEASING017"/>
             <to id="leasing_bean_17" uri="bean:leasing017"/>
+        </route>
+        <route id="leasing_route_18">
+            <from id="leasing_from_18" uri="direct-vm:LEASING018"/>
+            <to id="leasing_bean_18" uri="bean:leasing018"/>
+        </route>
+        <route id="leasing_route_19">
+            <from id="leasing_from_19" uri="direct-vm:LEASING019"/>
+            <to id="leasing_bean_19" uri="bean:leasing019"/>
+        </route>
+        <route id="leasing_route_20">
+            <from id="leasing_from_20" uri="direct-vm:LEASING020"/>
+            <to id="leasing_bean_20" uri="bean:leasing020"/>
         </route>
     </camelContext>
 </beans>
